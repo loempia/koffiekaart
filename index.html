@@ -177,7 +177,7 @@ footer b{color:var(--ink)}
 
 <footer>
   <b>KoffieKaart</b> — an independent index of Dutch specialty coffee. We never sell coffee ourselves; every “Buy” button goes straight to the roastery’s own webshop.<br>
-  Catalogue snapshot: Aug 2026 · live Shopify data for 14 roasteries · index data via grachtenbeans.nl
+  Catalogue snapshot: Aug 2026 · live Shopify data for 14 roasteries
 </footer>
 
 <div class="modal-bg" id="modalbg" onclick="if(event.target===this)closeModal()">
@@ -308,7 +308,7 @@ function renderRoasters(){
     .filter(r=>!state.province||r.province===state.province)
     .filter(r=>!state.origin||window.COFFEES.some(c=>c.r===r.id&&c.o===state.origin));
   $('#view-roasters').innerHTML=rs.map(r=>`
-    <div class="rcard" onclick="go('discover');state.q='${esc(r.name)}';$('#q').value='${esc(r.name)}';render()">
+    <div class="rcard" onclick="window.open('${esc(r.website||('https://www.google.com/search?q='+encodeURIComponent(r.name+' koffie')))}','_blank')">
       <span class="count">${r.coffee_count||0} coffees</span>
       <h3>${esc(r.name)}</h3>
       <div class="meta">📍 ${esc([r.city,r.province].filter(Boolean).join(', ')||'Netherlands')}</div>
