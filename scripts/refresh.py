@@ -36,7 +36,7 @@ SHOPIFY = [
 ]
 GB_BASE = "https://grachtenbeans.nl/wp-json/wp/v2"
 
-SKIP = ['alessi','filter papers','theefilters','papieren','filters','mok ','mug','beker','cup','thermos',
+SKIP = ['alessi','filter papers','theefilters','papieren','filters','mok ','mug','beker','cup','thermos','proefpakket','abonnement','subscription','cadeau-box','gift card','giftcard','theefilter','capsules voor','t-shirt','workshop','cursus','cupping','training','koffiemachine','grinder',
         'abonnement','subscription','proefpakket','giftcard','gift card','cadeaukaart','voucher',
         'machine','grinder','molen','kan ','server','pitcher','tamper','kettle','waterkoker','weegschaal',
         'scale','brewer','aeropress','v60','chemex','french press','moka','portafilter',
