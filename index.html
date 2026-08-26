@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KoffieKaart — Every Dutch specialty roastery, one map of flavour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf6f0; --card:#fffdf9; --ink:#2b2118; --ink-soft:#6b5d4f;
+  --accent:#c2571b; --accent-soft:#f4e3d3; --line:#e8ddd0;
+  --green:#3d7a4f; --amber:#c99a2e;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.55}
+h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif}
+a{color:var(--accent);text-decoration:none}
+
+header{position:sticky;top:0;z-index:50;background:rgba(250,246,240,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hwrap{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:18px}
+.logo{font-family:'Fraunces';font-weight:700;font-size:1.45rem;letter-spacing:-.02em;display:flex;align-items:center;gap:9px;cursor:pointer}
+.logo .dot{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #e08a44, var(--accent));display:inline-block}
+.logo em{color:var(--accent);font-style:normal}
+nav{margin-left:auto;display:flex;gap:6px}
+nav button{background:none;border:none;font:inherit;font-weight:600;color:var(--ink-soft);padding:8px 14px;border-radius:99px;cursor:pointer}
+nav button.active,nav button:hover{background:var(--accent-soft);color:var(--accent)}
+
+.hero{max-width:1200px;margin:0 auto;padding:52px 24px 20px}
+.hero h1{font-size:clamp(2rem,4.5vw,3.4rem);font-weight:600;letter-spacing:-.02em;line-height:1.12;max-width:760px}
+.hero h1 em{color:var(--accent);font-style:italic}
+.hero p{margin-top:14px;color:var(--ink-soft);max-width:600px;font-size:1.05rem}
+.stats{display:flex;gap:28px;margin-top:22px;flex-wrap:wrap}
+.stats b{font-family:'Fraunces';font-size:1.6rem;color:var(--ink)}
+.stats span{display:block;color:var(--ink-soft);font-size:.85rem}
+
+.searchbar{max-width:1200px;margin:26px auto 0;padding:0 24px;position:sticky;top:63px;z-index:40}
+.searchbox{display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px solid var(--line);border-radius:99px;padding:12px 20px;box-shadow:0 4px 24px rgba(43,33,24,.06)}
+.searchbox:focus-within{border-color:var(--accent)}
+.searchbox input{flex:1;border:none;background:none;font:inherit;font-size:1.05rem;color:var(--ink);outline:none}
+.searchbox input::placeholder{color:#b3a493}
+.searchbox kbd{font-size:.72rem;color:var(--ink-soft);border:1px solid var(--line);border-radius:6px;padding:2px 7px;background:var(--bg)}
+
+.filters{max-width:1200px;margin:14px auto 0;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{border:1.5px solid var(--line);background:var(--card);border-radius:99px;padding:7px 15px;font-size:.88rem;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:.15s}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+select.chip{appearance:none;padding-right:26px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b5d4f' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.resultline{max-width:1200px;margin:16px auto 0;padding:0 24px;color:var(--ink-soft);font-size:.9rem;display:flex;justify-content:space-between;align-items:center}
+
+main{max-width:1200px;margin:0 auto;padding:18px 24px 80px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .18s, box-shadow .18s;display:flex;flex-direction:column;position:relative}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(43,33,24,.11)}
+.card .img{height:170px;background:linear-gradient(135deg,var(--accent-soft),#efe0cf);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.card .img img{width:100%;height:100%;object-fit:cover}
+.card .img .beanmark{font-size:3rem;opacity:.5}
+.card.live::after{content:"live · in stock";position:absolute;top:10px;left:10px;background:var(--green);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:99px;padding:3px 10px}
+.card .body{padding:15px 17px 17px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .roaster{font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
+.card h3{font-size:1.13rem;font-weight:600;line-height:1.3;letter-spacing:-.01em}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:.74rem;font-weight:600;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:2.5px 10px;color:var(--ink-soft)}
+.tag.acc{background:var(--accent-soft);border-color:transparent;color:#8a3d10}
+.card .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:8px}
+.price{font-family:'Fraunces';font-weight:700;font-size:1.05rem}
+.buybtn{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:var(--bg);font-size:.82rem;font-weight:700;border:none;border-radius:99px;padding:8px 16px;cursor:pointer;text-decoration:none}
+.buybtn:hover{background:var(--accent)}
+.watch{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);border:1px solid var(--line);cursor:pointer;font-size:1.05rem;line-height:1;display:flex;align-items:center;justify-content:center;transition:.15s;z-index:2}
+.watch:hover{transform:scale(1.12)}
+.watch.on{background:var(--accent);border-color:var(--accent)}
+
+.empty{text-align:center;padding:70px 20px;color:var(--ink-soft)}
+.empty h3{font-size:1.5rem;margin-bottom:8px;color:var(--ink)}
+
+/* Roasters view */
+.rlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.rcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:19px 21px;cursor:pointer;transition:.15s}
+.rcard:hover{border-color:var(--accent);transform:translateY(-2px)}
+.rcard h3{font-size:1.2rem;font-weight:600}
+.rcard .meta{color:var(--ink-soft);font-size:.86rem;margin-top:3px}
+.rcard .count{float:right;font-family:'Fraunces';font-weight:700;color:var(--accent)}
+
+/* Watchlist */
+.wempty{text-align:center;padding:60px 20px;color:var(--ink-soft)}
+
+footer{border-top:1px solid var(--line);padding:34px 24px;text-align:center;color:var(--ink-soft);font-size:.85rem}
+footer b{color:var(--ink)}
+
+/* Modal */
+.modal-bg{position:fixed;inset:0;background:rgba(43,33,24,.45);z-index:100;display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;backdrop-filter:blur(3px)}
+.modal-bg.open{display:flex}
+.modal{background:var(--card);border-radius:20px;max-width:720px;width:100%;max-height:90vh;overflow:auto;animation:pop .2s ease}
+@keyframes pop{from{transform:translateY(14px);opacity:0}}
+.mhero{height:230px;background:linear-gradient(135deg,var(--accent-soft),#eadbc6);display:flex;align-items:center;justify-content:center;position:relative}
+.mhero img{width:100%;height:100%;object-fit:cover}
+.mhero .beanmark{font-size:4.5rem;opacity:.5}
+.mclose{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.94);border:none;font-size:1.1rem;cursor:pointer;z-index:2}
+.mbody{padding:26px 30px 30px}
+.mroast{font-size:.78rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+.mbody h2{font-size:1.75rem;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.msub{color:var(--ink-soft);margin-top:4px}
+.mtags{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0}
+.mtags .tag{font-size:.8rem;padding:4px 13px}
+.mdesc{color:var(--ink-soft);font-size:.95rem;margin-top:6px}
+.mactions{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap;align-items:center}
+.bigbuy{background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:1rem;border:none;border-radius:99px;padding:13px 28px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.bigbuy:hover{filter:brightness(.94)}
+.ghost{background:none;border:1.5px solid var(--line);border-radius:99px;padding:12px 22px;font:inherit;font-weight:600;cursor:pointer;color:var(--ink)}
+.ghost:hover{border-color:var(--ink)}
+.mfact{display:flex;gap:26px;margin-top:22px;padding-top:18px;border-top:1px dashed var(--line);flex-wrap:wrap}
+.mfact div b{display:block;font-size:1.02rem}
+.mfact div span{font-size:.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:var(--bg);padding:12px 24px;border-radius:99px;font-size:.9rem;font-weight:600;opacity:0;transition:.3s;z-index:200;pointer-events:none}
+.toast.show{transform:translateX(-50%);opacity:1}
+
+@media(max-width:640px){
+  .searchbox kbd{display:none}
+  .hero{padding-top:36px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hwrap">
+    <div class="logo" onclick="go('discover')"><span class="dot"></span>Koffie<em>Kaart</em></div>
+    <nav>
+      <button id="nav-discover" class="active" onclick="go('discover')">Discover</button>
+      <button id="nav-roasters" onclick="go('roasters')">Roasteries</button>
+      <button id="nav-watch" onclick="go('watch')">Watchlist <span id="watchcount"></span></button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <h1>The Netherlands roasts <em>world-class coffee</em>. Find your next bag here.</h1>
+  <p>Browse current offerings from <b>374 Dutch specialty roasteries</b> — from Amsterdam micro-branders to national names. Search by origin, process, taste or acidity, and get a direct link to buy.</p>
+  <div class="stats">
+    <div><b>374</b><span>roasteries indexed</span></div>
+    <div><b>4,215</b><span>coffees tracked</span></div>
+    <div><b>149</b><span>live-priced offerings</span></div>
+    <div><b>~€0</b><span>markup. we link out, they roast</span></div>
+  </div>
+</section>
+
+<div class="searchbar" id="searchbar">
+  <div class="searchbox">
+    <span style="font-size:1.1rem">🔎</span>
+    <input id="q" type="search" placeholder="Try: natural ethiopia · acidic kenya · rum baba decaf · washed colombia…" autocomplete="off">
+    <kbd>/</kbd>
+  </div>
+</div>
+
+<div class="filters" id="filters">
+  <button class="chip" data-f="process:Natural">Natural</button>
+  <button class="chip" data-f="process:Washed">Washed</button>
+  <button class="chip" data-f="process:Honey">Honey</button>
+  <button class="chip" data-f="process:Experimental">Experimental</button>
+  <button class="chip" data-f="acidity:high">Bright / acidic</button>
+  <button class="chip" data-f="decaf:1">Decaf</button>
+  <select class="chip" id="f-origin"><option value="">Origin: all</option></select>
+  <select class="chip" id="f-roast"><option value="">Roast: all</option><option>light</option><option>medium</option><option>medium-dark</option><option>dark</option></select>
+  <select class="chip" id="f-province"><option value="">Province: all</option></select>
+</div>
+
+<div class="resultline"><span id="resultcount"></span><span style="font-size:.8rem" id="syncnote">prices & availability refresh via nightly sync</span></div>
+
+<main>
+  <div id="view-coffees" class="grid"></div>
+  <div id="view-roasters" class="rlist" style="display:none"></div>
+  <div id="view-watch" style="display:none"></div>
+</main>
+
+<footer>
+  <b>KoffieKaart</b> — an independent index of Dutch specialty coffee. We never sell coffee ourselves; every “Buy” button goes straight to the roastery’s own webshop.<br>
+  Catalogue snapshot: Aug 2026 · live Shopify data for 14 roasteries · index data via grachtenbeans.nl
+</footer>
+
+<div class="modal-bg" id="modalbg" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="data/data.js"></script>
+<script>
+let state = {view:'discover', q:'', filters:new Set(), origin:'', roast:'', province:'', watch:load()};
+function load(){try{return JSON.parse(localStorage.getItem('kk_watch')||'[]')}catch(e){return[]}}
+function saveWatch(){localStorage.setItem('kk_watch', JSON.stringify(state.watch))}
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- build filter options ---------- */
+(function(){
+  const origins=[...new Set(window.COFFEES.map(c=>c.o).filter(Boolean))].sort();
+  const provs=[...new Set(window.ROASTERS.map(r=>r.province).filter(Boolean))].sort();
+  for(const o of origins){const el=document.createElement('option');el.value=o;el.textContent='Origin: '+o;$('#f-origin').append(el)}
+  for(const p of provs){const el=document.createElement('option');el.value=p;el.textContent=p;$('#f-province').append(el)}
+})();
+
+/* ---------- search + filter ---------- */
+function tokenized(c){
+  return ((c.n||'')+' '+(c.rn||'')+' '+(c.city||'')+' '+(c.o||'')+' '+(c.reg||'')+' '+
+    (c.p||[]).join(' ')+' '+(c.t||[]).join(' ')+' '+(c.ac||'')+' '+(c.ro||'')).toLowerCase();
+}
+const TOKENS=new WeakMap(); window.COFFEES.forEach(c=>TOKENS.set(c,tokenized(c)));
+
+function match(c){
+  for(const f of state.filters){
+    const [k,v]=f.split(':');
+    if(k==='process'&&!(c.p||[]).includes(v))return false;
+    if(k==='acidity'&&c.ac!==v)return false;
+    if(k==='decaf'&&v==='1'&&!c.decaf)return false;
+  }
+  if(state.origin&&c.o!==state.origin)return false;
+  if(state.roast&&c.ro!==state.roast)return false;
+  if(state.province){
+    const r=window.ROASTERS.find(x=>x.id===c.r);
+    if(!r||r.province!==state.province)return false;
+  }
+  const q=state.q.trim().toLowerCase();
+  if(q){
+    // all tokens must appear somewhere (supports "natural ethiopia", "acidic kenya")
+    const words=q.split(/\s+/);
+    const t=TOKENS.get(c);
+    for(const w of words){
+      if(t.includes(w))continue;
+      // semantic-ish aliases
+      const alias={'acidic':['hoge zuurtegraad','bright','fruitig','citrus','citrusvrucht','zure'],'fruity':['fruitig','bessen','overig fruit'],'chocolatey':['chocolade','cacao','chocolate'],'floral':['bloemig','floral'],'nutty':['notig','amandel','hazelnoot'],'strong':['donkere branding','dark'],'natural process':[],'eth':[ ]};
+      if(Object.entries(alias).some(([k,vs])=>k.startsWith(w)&&vs.some(v=>t.includes(v))))continue;
+      return false;
+    }
+  }
+  return true;
+}
+
+function currentList(){
+  if(state.view==='watch'){
+    return window.COFFEES.filter(c=>state.watch.includes(c.id));
+  }
+  let list=window.COFFEES.filter(match);
+  // rank: live+priced first, then relevance to query
+  list.sort((a,b)=>{
+    const s=x=>((x.live?2:0)+(x.price?1:0));
+    return s(b)-s(a)||a.n.localeCompare(b.n);
+  });
+  return list.slice(0,240); // cap render for speed
+}
+
+/* ---------- render ---------- */
+function beanArt(c){
+  const hues=[25,340,150,210,60];
+  const h=hues[(c.r.length)%hues.length];
+  return `<div class="img" style="background:linear-gradient(135deg,hsl(${h},62%,88%),hsl(${h+25},48%,79%))">
+    <svg width="84" height="84" viewBox="0 0 64 64"><ellipse cx="32" cy="32" rx="20" ry="27" fill="hsl(${h},45%,38%)" transform="rotate(-18 32 32)"/><path d="M32 8 C22 22 42 42 32 56" stroke="hsl(${h},62%,88%)" stroke-width="3.4" fill="none" transform="rotate(-18 32 32)"/></svg>
+  </div>`;
+}
+function cardHTML(c){
+  const watched=state.watch.includes(c.id);
+  const tags=[
+    c.o?`<span class="tag acc">${esc(c.o)}</span>`:'',
+    (c.p||[]).map(p=>`<span class="tag">${esc(p)}</span>`).join(''),
+    c.ac==='high'?`<span class="tag">bright</span>`:c.ac==='low'?`<span class="tag">low acid</span>`:'',
+    c.decaf?`<span class="tag">decaf</span>`:'',
+    (c.t||[]).slice(0,3).map(t=>`<span class="tag">${esc(t)}</span>`).join('')
+  ].join('');
+  return `<article class="card ${c.live?'live':''}" onclick="openDetail('${esc(c.id)}')">
+    <button class="watch ${watched?'on':''}" title="Add to watchlist" onclick="toggleWatch(event,'${esc(c.id)}')">${watched?'♥':'♡'}</button>
+    ${c.img?`<div class="img"><img loading="lazy" src="${esc(c.img)}" onerror="this.remove()"></div>`:beanArt(c)}
+    <div class="body">
+      <div class="roaster">${esc(c.rn)}${c.city?' · '+esc(c.city):''}</div>
+      <h3>${esc(c.n)}</h3>
+      <div class="tags">${tags}</div>
+      <div class="foot">
+        ${c.price?`<span class="price">€${c.price.toFixed(2)}</span>`:`<span class="price" style="color:var(--ink-soft);font-size:.85rem">see shop</span>`}
+        <a class="buybtn" href="${esc(c.url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Buy ↗</a>
+      </div>
+    </div>
+  </article>`;
+}
+
+function render(){
+  $('#view-coffees').style.display=state.view==='roasters'?'none':'grid';
+  $('#view-roasters').style.display=state.view==='roasters'?'grid':'none';
+  $('#view-watch').style.display='none';
+  $('#hero').style.display=(state.view==='discover')?'':'none';
+  $('#searchbar').style.display=state.view==='roasters'&&false?'none':'';
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  $('#nav-'+state.view)?.classList.add('active');
+  $('#watchcount').textContent=state.watch.length?`(${state.watch.length})`:'';
+
+  if(state.view==='roasters'){renderRoasters();return}
+  const list=currentList();
+  $('#view-coffees').innerHTML=list.map(cardHTML).join('');
+  $('#resultcount').textContent=`${list.length}${state.view!=='watch'&&(window.COFFEES.filter(match).length>240)?'+':''} coffees${state.view==='watch'?' on your watchlist':''}`;
+  if(!list.length){
+    $('#view-coffees').innerHTML=`<div class="empty" style="grid-column:1/-1"><h3>${state.view==='watch'?'Your watchlist is empty':'Nothing found'}</h3>${state.view==='watch'?'Tap ♡ on any coffee to keep an eye on its price and availability.':'Try broader terms — e.g. <i>ethiopia natural</i> or just a roaster name.'}</div>`;
+  }
+}
+
+function renderRoasters(){
+  const q=state.q.trim().toLowerCase();
+  let rs=window.ROASTERS.filter(r=>!q||(r.name+' '+(r.city||'')).toLowerCase().includes(q))
+    .filter(r=>!state.province||r.province===state.province)
+    .filter(r=>!state.origin||window.COFFEES.some(c=>c.r===r.id&&c.o===state.origin));
+  $('#view-roasters').innerHTML=rs.map(r=>`
+    <div class="rcard" onclick="go('discover');state.q='${esc(r.name)}';$('#q').value='${esc(r.name)}';render()">
+      <span class="count">${r.coffee_count||0} coffees</span>
+      <h3>${esc(r.name)}</h3>
+      <div class="meta">📍 ${esc([r.city,r.province].filter(Boolean).join(', ')||'Netherlands')}</div>
+    </div>`).join('');
+  $('#resultcount').textContent=`${rs.length} roasteries`;
+}
+
+/* ---------- detail modal ---------- */
+function openDetail(id){
+  const c=window.COFFEES.find(x=>x.id===id); if(!c)return;
+  const r=window.ROASTERS.find(x=>x.id===c.r);
+  const watched=state.watch.includes(id);
+  $('#modal').innerHTML=`
+    <div class="mhero">
+      ${c.img?`<img src="${esc(c.img)}">`:beanArt(c).replace('class="img"','class="img" style="height:100%"')}
+      <button class="mclose" onclick="closeModal()">✕</button>
+    </div>
+    <div class="mbody">
+      <div class="mroast">${esc(c.rn)}${c.city?' — '+esc(c.city):''}</div>
+      <h2>${esc(c.n)}</h2>
+      <div class="msub">${c.live?'Live from the roastery\'s webshop · ':'Indexed offering · '}${c.stock?'in stock':'availability unknown'}</div>
+      <div class="mtags">
+        ${c.o?`<span class="tag acc">${esc(c.o)}</span>`:''}
+        ${(c.p||[]).map(p=>`<span class="tag">${esc(p)}</span>`).join('')}
+        ${c.ac?`<span class="tag">acidity: ${esc(c.ac)}</span>`:''}
+        ${c.ro?`<span class="tag">roast: ${esc(c.ro)}</span>`:''}
+        ${c.decaf?`<span class="tag">decaf</span>`:''}
+        ${(c.t||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}
+      </div>
+      <div class="mfact">
+        ${c.price?`<div><b>€${c.price.toFixed(2)}</b><span>from price</span></div>`:''}
+        ${c.reg?`<div><b>${esc(c.reg)}</b><span>region</span></div>`:''}
+        <div><b>${esc(r?(r.city||'NL'):'NL')}</b><span>roasted in</span></div>
+      </div>
+      <div class="mactions">
+        <a class="bigbuy" href="${esc(c.url)}" target="_blank" rel="noopener">Buy at ${esc(c.rn)} ↗</a>
+        <button class="ghost" onclick="toggleWatch(event,'${esc(id)}',true)">${watched?'♥ On watchlist':'♡ Add to watchlist'}</button>
+      </div>
+    </div>`;
+  $('#modalbg').classList.add('open');
+}
+function closeModal(){$('#modalbg').classList.remove('open')}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeModal();
+  if(e.key==='/'&&document.activeElement!==$('#q')){e.preventDefault();$('#q').focus()}
+});
+
+/* ---------- watchlist ---------- */
+function toggleWatch(ev,id,fromModal){
+  ev&&ev.stopPropagation();
+  const i=state.watch.indexOf(id);
+  if(i>=0){state.watch.splice(i,1);toast('Removed from watchlist')}
+  else{
+    state.watch.push(id);
+    const c=window.COFFEES.find(x=>x.id===id);
+    toast(`Watching “${(c?.n||'coffee').slice(0,40)}” — we’ll flag price changes`);
+  }
+  saveWatch();render();
+  if(fromModal)openDetail(id);
+}
+let toastTimer;
+function toast(msg){
+  const t=$('#toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+/* ---------- navigation ---------- */
+function go(view){
+  state.view=view;
+  if(view==='watch'){$('#view-coffees').style.display='grid'}
+  render();
+}
+$('#q').addEventListener('input',e=>{state.q=e.target.value;if(state.view==='watch')go('discover');else render()});
+document.querySelectorAll('.chip[data-f]').forEach(ch=>{
+  ch.addEventListener('click',()=>{
+    ch.classList.toggle('on');
+    const f=ch.dataset.f;
+    state.filters.has(f)?state.filters.delete(f):state.filters.add(f);
+    render();
+  });
+});
+$('#f-origin').addEventListener('change',e=>{state.origin=e.target.value;render()});
+$('#f-roast').addEventListener('change',e=>{state.roast=e.target.value;render()});
+$('#f-province').addEventListener('change',e=>{state.province=e.target.value;render()});
+
+/* sync note */
+if(window.CHANGES){
+  const c=window.CHANGES;
+  const bits=[];
+  if(c.new)bits.push(c.new+' new');
+  if(c.gone)bits.push(c.gone+' gone');
+  if(c.prices)bits.push(c.prices+' price changes');
+  document.querySelector('#syncnote').textContent = 'catalogue '+c.when+': '+c.total+' coffees'+(bits.length?' · last sync: '+bits.join(', '):' · no changes at last sync');
+}
+
+render();
+</script>
+</body>
+</html>
