@@ -44,6 +44,25 @@ SHOPIFY = [
     ("wakuli", "Wakuli", "wakuli.nl"),
     ("koffie-van-hoorn", "Koffie van Hoorn", "koffievanhoorn.nl"),
     ("de-koffiemeester", "De Koffiemeester", "dekoffiemeester.nl"),
+    ("fucking-strong-coffee", "Fucking Strong Coffee", "fuckingstrongcoffee.nl"),
+    ("92-origins", "92 Origins", "92origins.com"),
+    ("amstel-koffie", "Amstel Koffie", "www.amstelkoffie.nl"),
+    ("arabicafelix", "Arabicafelix", "arabicafelix.nl"),
+    ("bakkum-beans", "Bakkum Beans", "bakkumbeans.com"),
+    ("baobab-coffee-roasters", "Baobab Coffee Roasters", "baobabcoffee.nl"),
+    ("be-good-coffee", "Be Good Coffee", "begoodcoffee.com"),
+    ("beans-coffee-roasters", "Beans Coffee Roasters", "beanscoffeeroaster.com"),
+    ("betuws-bakkie", "Betuws Bakkie", "betuwsbakkie.nl"),
+    ("bitterzoet-coffee-roasters", "Bitterzoet Coffee Roasters", "bitterzoetcoffee.com"),
+    ("blue-city-roasters", "Blue City Roasters", "bluecityroasters.nl"),
+    ("brazuca-coffee", "Brazuca Coffee", "www.brazucacoffee.com"),
+    ("cornelissen-coffeeroasters", "Cornelissen Coffeeroasters", "cornelissencoffeeroasters.com"),
+    ("de-koffiekoopman", "De Koffiekoopman", "dekoffiekoopman.nl"),
+    ("de-zeeuwse-sommelier", "De Zeeuwse Sommelier", "dezeeuwsesommelier.nl"),
+    ("eddys-coffee", "Eddy's Coffee", "eddyscoffee.com"),
+    ("five-ways-coffee-roasters", "Five Ways Coffee Roasters", "fivewayscoffee.com"),
+    ("footnote-coffee", "Footnote Coffee", "footnotecoffee.com"),
+    ("uncommon-coffee", "Uncommon Coffee", "uncommonams.com"),
 ]
 GB_BASE = "https://grachtenbeans.nl/wp-json/wp/v2"
 
@@ -147,8 +166,50 @@ def pull_grachtenbeans():
     print(f"  grachtenbeans: {len(out)} products across {pages} pages")
     return out
 
+def pull_woo():
+    """Pull live catalogs from WooCommerce stores (Store REST API, no key needed)."""
+    ov = load_overrides()
+    stores = list(ov.get("woocommerce_stores", {}).items())
+    out = []
+    for slug, url in stores:
+        host = url.split("//")[-1].rstrip("/")
+        for page in (1, 2):
+            try:
+                raw = fetch(f"https://{host}/wp-json/wc/store/products?per_page=50&page={page}")
+                if not raw: break
+                prods = json.loads(raw)
+                if not isinstance(prods, list) or not prods: break
+            except Exception:
+                break
+            for p in prods:
+                title = re.sub(r"&#\d+;|&[a-z]+;", "", p.get("name") or "").strip()
+                tl = title.lower()
+                if any(k in tl for k in SKIP): continue
+                if not any(k in tl for k in COFFEE_KW): continue
+                try:
+                    price = float((p.get("prices") or {}).get("price", 0)) / 100 or None
+                except Exception:
+                    price = None
+                imgs = p.get("images") or []
+                img = None
+                if imgs:
+                    img = (imgs[0] if isinstance(imgs[0], str) else (imgs[0].get("src") or None)) or None
+                out.append({
+                    "id": slugify_id(slug, title),
+                    "name": title,
+                    "roaster_slug": slug,
+                    "price_eur": round(price, 2) if price else None,
+                    "in_stock": bool(p.get("is_in_stock", True)),
+                    "buy_url": p.get("permalink") or f"https://{host}",
+                    "image_url": img,
+                    "source": "woo",
+                })
+            if len(prods) < 50: break
+    print(f"  woocommerce: {len(out)} products from {len(stores)} stores")
+    return out
+
 def stable_key(c):
-    """gb entries keyed by gb_id; shopify by id"""
+    """gb entries keyed by gb_id; shopify/woo by id"""
     return f"{c['source']}:{c.get('gb_id') or c['id']}"
 
 def main():
@@ -166,6 +227,7 @@ def main():
 
     print("Pulling catalogues…")
     shopify = pull_shopify()
+    woo = pull_woo()
     gb = pull_grachtenbeans()
 
     prev = {}
@@ -173,8 +235,7 @@ def main():
         snap = json.load(open(SNAPSHOT))
         prev = {stable_key(c): c for c in snap}
 
-    cur_list = shopify + gb
-    # apply overrides: drop removed roasters, filter skip patterns, patch roaster fields
+    cur_list = shopify + woo + gb
     cur_list = [c for c in cur_list if c.get("roaster_slug") not in removed_roasters]
     if skip_extra:
         for c in cur_list:
