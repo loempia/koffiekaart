@@ -1,0 +1,52 @@
+{
+ "_comment": "Manual curation layer: these entries override/patch the auto-collected data on every refresh. Fields: remove (bool), website, city, province, notes.",
+ "roasters": {
+  "fucking-strong-coffee": {
+   "name": "Fucking Strong Coffee",
+   "website": "https://fuckingstrongcoffee.nl",
+   "city": "Amsterdam",
+   "province": "Noord-Holland",
+   "note": "House brand of Good Beans, Amsterdam. Shopify store with live data."
+  },
+  "buscaglione": {
+   "name": "Buscaglione Espresso",
+   "website": "https://www.buscaglione.nl",
+   "city": "Breukelen",
+   "province": "Utrecht",
+   "note": "Italian-tradition roaster focused on horeca/wholesale. Odoo shop (no JSON API)."
+  }
+ },
+ "removed_roasters": {
+  "_comment": "Roasters deliberately excluded from the index",
+  "goodbeans": "Good Beans Antwerpen — Belgian shop; Fucking Strong Coffee (their brand) is indexed separately as Amsterdam-based"
+ },
+ "coffee_filters": {
+  "_comment": "Product-name patterns always excluded from coffee listings",
+  "skip_patterns": [
+   "proefpakket",
+   "abonnement",
+   "subscription",
+   "cadeau-box",
+   "gift card",
+   "giftcard",
+   "theefilter",
+   "capsules voor",
+   "t-shirt",
+   "workshop",
+   "cursus",
+   "cupping",
+   "training",
+   "koffiemachine",
+   "grinder",
+   "scarf",
+   "sock",
+   "tote",
+   "mug ",
+   "four-pack",
+   "aeropress",
+   "chemex filters",
+   "moccamaster filters",
+   "v60 filters"
+  ]
+ }
+}

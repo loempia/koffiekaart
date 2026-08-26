@@ -17,6 +17,17 @@ import json, re, sys, urllib.request, os, time
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
 SNAPSHOT = os.path.join(DATA, "snapshot.json")
+OVERRIDES = os.path.join(DATA, "overrides.json")
+
+def load_overrides():
+    """Manual curation layer: roaster patches + skip patterns survive every refresh."""
+    if not os.path.exists(OVERRIDES):
+        return {}
+    try:
+        return json.load(open(OVERRIDES))
+    except Exception:
+        print("  ! overrides.json unreadable — ignoring", file=sys.stderr)
+        return {}
 
 SHOPIFY = [
     ("black-bloom", "Black & Bloom", "blackandbloom.nl"),
@@ -142,6 +153,17 @@ def stable_key(c):
 
 def main():
     dry = "--dry-run" in sys.argv
+    ov = load_overrides()
+    skip_extra = [s.lower() for s in ov.get("coffee_filters", {}).get("skip_patterns", [])]
+    removed_roasters = set(ov.get("removed_roasters", {}).keys())
+    roaster_patches = {k: v for k, v in ov.get("roasters", {}).items() if not k.startswith("_")}
+
+    # extra Shopify stores from overrides.roasters (any entry with a shopify-capable domain)
+    for slug, patch in roaster_patches.items():
+        site = (patch.get("website") or "").replace("https://", "").replace("http://", "").rstrip("/")
+        if site and slug not in [s for s, _, _ in SHOPIFY]:
+            SHOPIFY.append((slug, patch.get("name", slug), site))
+
     print("Pulling catalogues…")
     shopify = pull_shopify()
     gb = pull_grachtenbeans()
@@ -152,6 +174,15 @@ def main():
         prev = {stable_key(c): c for c in snap}
 
     cur_list = shopify + gb
+    # apply overrides: drop removed roasters, filter skip patterns, patch roaster fields
+    cur_list = [c for c in cur_list if c.get("roaster_slug") not in removed_roasters]
+    if skip_extra:
+        for c in cur_list:
+            t = (c.get("name") or "").lower()
+            if any(s in t for s in skip_extra):
+                c["_skip"] = True
+        cur_list = [c for c in cur_list if not c.pop("_skip", False)]
+
     cur = {stable_key(c): c for c in cur_list}
 
     added, gone, price_changes, stock_changes = [], [], [], []
