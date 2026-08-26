@@ -57,7 +57,7 @@ main{max-width:1200px;margin:0 auto;padding:18px 24px 80px}
 .card .img{height:170px;background:linear-gradient(135deg,var(--accent-soft),#efe0cf);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
 .card .img img{width:100%;height:100%;object-fit:cover}
 .card .img .beanmark{font-size:3rem;opacity:.5}
-.card.live::after{content:"live · in stock";position:absolute;top:10px;left:10px;background:var(--green);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:99px;padding:3px 10px}
+.card.live.instock::after{content:"in stock";position:absolute;top:10px;left:10px;background:var(--green);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:99px;padding:3px 10px}
 .card .body{padding:15px 17px 17px;display:flex;flex-direction:column;gap:8px;flex:1}
 .card .roaster{font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
 .card h3{font-size:1.13rem;font-weight:600;line-height:1.3;letter-spacing:-.01em}
@@ -167,7 +167,7 @@ footer b{color:var(--ink)}
   <select class="chip" id="f-province"><option value="">Province: all</option></select>
 </div>
 
-<div class="resultline"><span id="resultcount"></span><span style="font-size:.8rem" id="syncnote">prices & availability refresh via nightly sync</span></div>
+<div class="resultline"><span id="resultcount"></span><span style="font-size:.8rem"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px"><input type="checkbox" id="f-live" style="accent-color:var(--accent)"> Live catalogue only</label></span></div>
 
 <main>
   <div id="view-coffees" class="grid"></div>
@@ -187,7 +187,7 @@ footer b{color:var(--ink)}
 
 <script src="data/data.js"></script>
 <script>
-let state = {view:'discover', q:'', filters:new Set(), origin:'', roast:'', province:'', watch:load()};
+let state = {view:'discover', q:'', filters:new Set(), origin:'', roast:'', province:'', liveOnly:false, watch:load()};
 function load(){try{return JSON.parse(localStorage.getItem('kk_watch')||'[]')}catch(e){return[]}}
 function saveWatch(){localStorage.setItem('kk_watch', JSON.stringify(state.watch))}
 
@@ -217,6 +217,7 @@ function match(c){
     if(k==='decaf'&&v==='1'&&!c.decaf)return false;
   }
   if(state.origin&&c.o!==state.origin)return false;
+  if(state.liveOnly&&!c.live)return false;
   if(state.roast&&c.ro!==state.roast)return false;
   if(state.province){
     const r=window.ROASTERS.find(x=>x.id===c.r);
@@ -268,7 +269,7 @@ function cardHTML(c){
     c.decaf?`<span class="tag">decaf</span>`:'',
     (c.t||[]).slice(0,3).map(t=>`<span class="tag">${esc(t)}</span>`).join('')
   ].join('');
-  return `<article class="card ${c.live?'live':''}" onclick="openDetail('${esc(c.id)}')">
+  return `<article class="card ${c.live?'live':''} ${c.stock?'instock':''}" onclick="openDetail('${esc(c.id)}')">
     <button class="watch ${watched?'on':''}" title="Add to watchlist" onclick="toggleWatch(event,'${esc(c.id)}')">${watched?'♥':'♡'}</button>
     ${c.img?`<div class="img"><img loading="lazy" src="${esc(c.img)}" onerror="this.remove()"></div>`:beanArt(c)}
     <div class="body">
@@ -393,6 +394,7 @@ document.querySelectorAll('.chip[data-f]').forEach(ch=>{
 $('#f-origin').addEventListener('change',e=>{state.origin=e.target.value;render()});
 $('#f-roast').addEventListener('change',e=>{state.roast=e.target.value;render()});
 $('#f-province').addEventListener('change',e=>{state.province=e.target.value;render()});
+$('#f-live').addEventListener('change',e=>{state.liveOnly=e.target.checked;render()});
 
 /* sync note + footer stats */
 if(window.CHANGES){
@@ -401,13 +403,12 @@ if(window.CHANGES){
   if(c.new)bits.push(c.new+' new');
   if(c.gone)bits.push(c.gone+' gone');
   if(c.prices)bits.push(c.prices+' price changes');
-  document.querySelector('#syncnote').textContent = 'catalogue '+c.when+': '+c.total.toLocaleString('en')+' coffees'+(bits.length?' · last sync: '+bits.join(', '):' · no changes at last sync');
   const fs=document.querySelector('#footerstats');
-  if(fs) fs.textContent = c.total.toLocaleString('en')+' coffees from '+c.roasters+' roasteries · '
-    + ((c.shopifyCoffees||0)+(c.wooCoffees||0)).toLocaleString('en')
-    + ' with live prices & stock from '+c.liveRoasters+' webshops ('
-    + (c.shopifyCoffees||0)+' Shopify, '+(c.wooCoffees||0)+' WooCommerce) · remaining offerings indexed via grachtenbeans.nl'
-    + ' · snapshot '+c.when;
+  if(fs) fs.textContent = 'Catalogue '+c.when+': '+c.total.toLocaleString('en')+' coffees from '+c.roasters+' roasteries'
+    + (bits.length?' · last sync: '+bits.join(', '):' · no changes at last sync')
+    + ' · '+((c.shopifyCoffees||0)+(c.wooCoffees||0)).toLocaleString('en')
+    + ' with live prices from '+c.liveRoasters+' connected webshops ('
+    + (c.shopifyCoffees||0)+' Shopify, '+(c.wooCoffees||0)+' WooCommerce) · rest indexed via grachtenbeans.nl';
 }
 
 render();
