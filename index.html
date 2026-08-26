@@ -177,7 +177,7 @@ footer b{color:var(--ink)}
 
 <footer>
   <b>KoffieKaart</b> — an independent index of Dutch specialty coffee. We never sell coffee ourselves; every “Buy” button goes straight to the roastery’s own webshop.<br>
-  Catalogue snapshot: Aug 2026 · live Shopify data for 14 roasteries
+  <span id="footerstats">Catalogue snapshot: Aug 2026</span>
 </footer>
 
 <div class="modal-bg" id="modalbg" onclick="if(event.target===this)closeModal()">
@@ -394,14 +394,20 @@ $('#f-origin').addEventListener('change',e=>{state.origin=e.target.value;render(
 $('#f-roast').addEventListener('change',e=>{state.roast=e.target.value;render()});
 $('#f-province').addEventListener('change',e=>{state.province=e.target.value;render()});
 
-/* sync note */
+/* sync note + footer stats */
 if(window.CHANGES){
   const c=window.CHANGES;
   const bits=[];
   if(c.new)bits.push(c.new+' new');
   if(c.gone)bits.push(c.gone+' gone');
   if(c.prices)bits.push(c.prices+' price changes');
-  document.querySelector('#syncnote').textContent = 'catalogue '+c.when+': '+c.total+' coffees'+(bits.length?' · last sync: '+bits.join(', '):' · no changes at last sync');
+  document.querySelector('#syncnote').textContent = 'catalogue '+c.when+': '+c.total.toLocaleString('en')+' coffees'+(bits.length?' · last sync: '+bits.join(', '):' · no changes at last sync');
+  const fs=document.querySelector('#footerstats');
+  if(fs) fs.textContent = c.total.toLocaleString('en')+' coffees from '+c.roasters+' roasteries · '
+    + ((c.shopifyCoffees||0)+(c.wooCoffees||0)).toLocaleString('en')
+    + ' with live prices & stock from '+c.liveRoasters+' webshops ('
+    + (c.shopifyCoffees||0)+' Shopify, '+(c.wooCoffees||0)+' WooCommerce) · remaining offerings indexed via grachtenbeans.nl'
+    + ' · snapshot '+c.when;
 }
 
 render();
