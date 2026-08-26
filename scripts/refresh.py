@@ -101,11 +101,17 @@ def slugify_id(roaster_slug, name):
 
 def pull_shopify():
     out = []
+    fails = 0
     for slug, rname, domain in SHOPIFY:
+        if fails >= 5:
+            print(f"  shopify: aborting after {fails} consecutive failures (rate limit?)", file=sys.stderr)
+            break
         page = 1
         while True:
             raw = fetch(f"https://{domain}/products.json?limit=250&page={page}")
-            if not raw: break
+            if not raw:
+                fails += 1
+                break
             try:
                 products = json.loads(raw).get("products", [])
             except Exception:
@@ -134,6 +140,7 @@ def pull_shopify():
                 })
             if len(products) < 250: break
             page += 1
+        time.sleep(0.8)  # be polite, avoid 429s
         print(f"  shopify {rname}: ok")
     return out
 
@@ -154,11 +161,14 @@ def pull_grachtenbeans():
         for p in products:
             name = re.sub(r"&#8217;", "'", p["title"]["rendered"])
             name = re.sub(r"\s+", " ", name).strip()
-            rid = p["roaster"][0] if p.get("roaster") else None
+            # roaster slug from URL: /koffiebrander/<slug>/<product>/
+            m = re.search(r"/koffiebrander/([^/]+)/", p.get("link") or "")
+            rslug = m.group(1) if m and m.group(1) not in ("uncategorised", "niet-gecategoriseerd") else None
             out.append({
-                "id": slugify_id("", "") or None,
+                "id": slugify_id(rslug or "gb", name),
                 "gb_id": p["id"],
                 "name": name,
+                "roaster_slug": rslug,
                 "detail_url": p["link"],
                 "last_checked": p.get("modified", ""),
                 "source": "grachtenbeans",
@@ -212,6 +222,68 @@ def stable_key(c):
     """gb entries keyed by gb_id; shopify/woo by id"""
     return f"{c['source']}:{c.get('gb_id') or c['id']}"
 
+HEALTH = os.path.join(DATA, "health.json")
+
+def load_health():
+    try:
+        return json.load(open(HEALTH))
+    except Exception:
+        return {}
+
+BREW_PATTERNS = [
+    (r"\bespresso\b", "espresso"),
+    (r"\bfilter\b|\bpour.?over\b|\bbatch brew\b|\bfilterkoffie\b", "filter"),
+    (r"\bomni\b", "omni"),
+]
+PRICE_MIN, PRICE_MAX = 3.0, 100.0  # sane range for 250g-ish retail bags
+
+def validate_and_tag(coffee):
+    """Price sanity check + brew-method tagging. Returns list of warnings."""
+    warnings = []
+    p = coffee.get("price_eur")
+    if p is not None and not (PRICE_MIN <= p <= PRICE_MAX):
+        warnings.append(f"price €{p} out of range")
+    brew = set()
+    text = (coffee.get("name") or "").lower()
+    for pat, tag in BREW_PATTERNS:
+        if re.search(pat, text):
+            brew.add(tag)
+    if brew:
+        coffee["brew_methods"] = sorted(brew)
+    return warnings
+
+def update_health(source, ok, count, error=""):
+    """Track per-source pull health."""
+    h = load_health()
+    h[source] = {
+        "last_ok": time.strftime("%Y-%m-%d %H:%M:%S") if ok else h.get(source, {}).get("last_ok"),
+        "last_attempt": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "last_count": count,
+        "last_error": error or None,
+        "ok": ok,
+    }
+    with open(HEALTH, "w") as f:
+        json.dump(h, f, ensure_ascii=False, indent=1)
+
+def archive_snapshot():
+    """Keep 4 weekly snapshots before overwriting."""
+    if not os.path.exists(SNAPSHOT):
+        return
+    arch = os.path.join(DATA, "snapshots")
+    os.makedirs(arch, exist_ok=True)
+    week = time.strftime("%Y-W%W")
+    dst = os.path.join(arch, f"snapshot-{week}.json")
+    if not os.path.exists(dst):
+        import shutil
+        shutil.copy2(SNAPSHOT, dst)
+        # prune archives older than 4 weeks
+        cutoff = time.time() - 4 * 7 * 86400
+        for f in os.listdir(arch):
+            fp = os.path.join(arch, f)
+            if os.path.getmtime(fp) < cutoff:
+                os.remove(fp)
+        print(f"  archived previous snapshot → snapshots/snapshot-{week}.json")
+
 def main():
     dry = "--dry-run" in sys.argv
     ov = load_overrides()
@@ -227,8 +299,14 @@ def main():
 
     print("Pulling catalogues…")
     shopify = pull_shopify()
+    update_health("shopify", len(shopify) > 0, len(shopify),
+                  "" if shopify else "no products pulled from any store")
     woo = pull_woo()
+    update_health("woocommerce", len(woo) > 0, len(woo),
+                  "" if woo else "no products pulled from any store")
     gb = pull_grachtenbeans()
+    update_health("grachtenbeans", len(gb) > 100, len(gb),
+                  "" if len(gb) > 100 else f"suspiciously low count: {len(gb)}")
 
     prev = {}
     if os.path.exists(SNAPSHOT):
@@ -241,6 +319,8 @@ def main():
     seen_id, seen_name, seen_url = set(), set(), set()
     deduped = []
     for c in cur_list:
+        if c.get("source") == "grachtenbeans" and not c.get("roaster_slug"):
+            continue  # unknown roaster, generic name — not useful
         k_id = c.get("id") or stable_key(c)
         k_name = (c.get("roaster_slug"), _norm(c.get("name")))
         k_url = (c.get("buy_url") or c.get("detail_url") or "").split("?")[0]
@@ -261,6 +341,13 @@ def main():
         cur_list = [c for c in cur_list if not c.pop("_skip", False)]
 
     cur = {stable_key(c): c for c in cur_list}
+
+    # price validation + brew tagging
+    price_warnings = []
+    for c in cur_list:
+        w = validate_and_tag(c)
+        if w:
+            price_warnings.append((c.get("name"), w[0]))
 
     added, gone, price_changes, stock_changes = [], [], [], []
     for k, c in cur.items():
@@ -290,12 +377,17 @@ def main():
     print(f"\n=== KoffieKaart refresh {report['generated']} ===")
     print(f"catalogue now: {len(cur)} coffees ({len(prev)} before)")
     print(f"NEW:   {len(added)}   GONE: {len(gone)}   PRICE CHANGES: {len(price_changes)}   STOCK: {len(stock_changes)}")
+    if price_warnings:
+        print(f"PRICE WARNINGS: {len(price_warnings)}")
+        for name, w in price_warnings[:10]:
+            print(f"  ! {w} — {name[:50]}")
     for pc in price_changes[:10]:
         print(f"  €{pc['was']} → €{pc['now']}  {pc['coffee'][:55]}")
     for a in added[:5]:
         print(f"  + {a['name'][:60]}")
 
     if not dry:
+        archive_snapshot()
         with open(SNAPSHOT, "w") as f:
             json.dump(cur_list, f, ensure_ascii=False)
         print("\nsnapshot updated → data/snapshot.json")

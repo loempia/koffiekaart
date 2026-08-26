@@ -1,0 +1,23 @@
+{
+ "shopify": {
+  "last_ok": "2026-08-26 13:02:18",
+  "last_attempt": "2026-08-26 13:02:18",
+  "last_count": 437,
+  "last_error": null,
+  "ok": true
+ },
+ "woocommerce": {
+  "last_ok": "2026-08-26 13:08:26",
+  "last_attempt": "2026-08-26 13:08:26",
+  "last_count": 729,
+  "last_error": null,
+  "ok": true
+ },
+ "grachtenbeans": {
+  "last_ok": "2026-08-26 13:09:47",
+  "last_attempt": "2026-08-26 13:09:47",
+  "last_count": 4224,
+  "last_error": null,
+  "ok": true
+ }
+}

@@ -1,7 +1,757 @@
 {
- "generated": "2026-08-26 11:11:53",
- "total_now": 4342,
+ "generated": "2026-08-26 13:09:47",
+ "total_now": 5275,
  "new": [
+  {
+   "coffee": "Filter: Ethiopia Guji Mi'eessaa Robe Natural",
+   "roaster": "black-bloom",
+   "url": "https://blackandbloom.nl/products/filter-ethiopia-guji-miessaa-robe-natural"
+  },
+  {
+   "coffee": "Filter: Colombia Lord Voldemort Natural Pink Bourbon",
+   "roaster": "black-bloom",
+   "url": "https://blackandbloom.nl/products/filter-colombia-lord-voldemort-natural-pink-bourbon"
+  },
+  {
+   "coffee": "Espresso: Guatemala Huehuetenango Tz'ikin",
+   "roaster": "black-bloom",
+   "url": "https://blackandbloom.nl/products/espresso-guatemala-huehuetenango-tzikin"
+  },
+  {
+   "coffee": "NIGHTCAP: Colombia Divino Niño washed DECAF EA Process",
+   "roaster": "black-bloom",
+   "url": "https://blackandbloom.nl/products/decaf-colombia-divino-nino-washed-ea-process"
+  },
+  {
+   "coffee": "Decaf | Ethiopië Gewassen",
+   "roaster": "bocca-coffee",
+   "url": "https://bocca.nl/products/decaf"
+  },
+  {
+   "coffee": "Baristina Blend",
+   "roaster": "bocca-coffee",
+   "url": "https://bocca.nl/products/baristina-blend-whole-beans"
+  },
+  {
+   "coffee": "Decaf | Brazilië",
+   "roaster": "bocca-coffee",
+   "url": "https://bocca.nl/products/decaf-brazil"
+  },
+  {
+   "coffee": "House blend",
+   "roaster": "bocca-coffee",
+   "url": "https://bocca.nl/products/brander1-house-blend"
+  },
+  {
+   "coffee": "Espresso Blend - Koffiebonen",
+   "roaster": "bocca-coffee",
+   "url": "https://bocca.nl/products/brander1-espresso-blend"
+  },
+  {
+   "coffee": "Espresso at Home",
+   "roaster": "bocca-coffee",
+   "url": "https://bocca.nl/products/espresso-at-home"
+  },
+  {
+   "coffee": "Ethiopia",
+   "roaster": "bocca-coffee",
+   "url": "https://bocca.nl/products/ethiopia"
+  },
+  {
+   "coffee": "The Blend",
+   "roaster": "bocca-coffee",
+   "url": "https://bocca.nl/products/the-blend"
+  },
+  {
+   "coffee": "Nariño Auction Lot: Finca Guayacam",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/auction-lot-fidencio"
+  },
+  {
+   "coffee": "Giraffe Coffee Espresso Servies",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/giraffe-coffee-espresso-kopjes-met-schotel-6-stuks"
+  },
+  {
+   "coffee": "Sage Group Head Cleaner (espresso cleaner)",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/sage-group-head-cleaner-espresso-cleaner"
+  },
+  {
+   "coffee": "Bela Vista Blend",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/bela-vista-blend"
+  },
+  {
+   "coffee": "DECAF Condor",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/decaf-condor"
+  },
+  {
+   "coffee": "Hario Filter-In Cold Brew Bottle",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/hario-filter-in-cold-brew-bottle"
+  },
+  {
+   "coffee": "Moccamaster Filterpapier Nr. 1",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/moccamaster-filterpapier-nr-1"
+  },
+  {
+   "coffee": "Nuova Ricambi Blindfilter 58mm",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/nuova-ricambi-blindfilter-58mm"
+  },
+  {
+   "coffee": "Single Origin van de maand",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/single-origin-van-de-maand"
+  },
+  {
+   "coffee": "Sage Waterfilter Claro Swiss",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/sage-waterfilter-claro-swiss"
+  },
+  {
+   "coffee": "Jura Claris Smart + waterfilter",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/jura-claris-smart-waterfilter"
+  },
+  {
+   "coffee": "Moccamaster Filterpapier Nr. 4",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/moccamaster-filterpapier-nr-4"
+  },
+  {
+   "coffee": "Pacific Blend",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/pacific-blend"
+  },
+  {
+   "coffee": "Organic Blend",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/organic-blend"
+  },
+  {
+   "coffee": "Latin America Blend",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/latin-america-blend"
+  },
+  {
+   "coffee": "Original Blend",
+   "roaster": "giraffe-coffee-roasters",
+   "url": "https://giraffecoffee.com/products/original-blend"
+  },
+  {
+   "coffee": "Sprout Medium Tee Feral For Filter",
+   "roaster": "sprout-coffee-roasters",
+   "url": "https://sproutcoffeeroasters.art/products/sprout-medium-tee-feral-for-filter"
+  },
+  {
+   "coffee": "Hario My Cafe Drip Filter 22pcs",
+   "roaster": "sprout-coffee-roasters",
+   "url": "https://sproutcoffeeroasters.art/products/hario-my-cafe-drip-filter-22pcs"
+  },
+  {
+   "coffee": "Sleep Well DECAF",
+   "roaster": "sprout-coffee-roasters",
+   "url": "https://sproutcoffeeroasters.art/products/sleep-well"
+  },
+  {
+   "coffee": "Muvna Gravity espresso distributor Black 58,35MM",
+   "roaster": "sprout-coffee-roasters",
+   "url": "https://sproutcoffeeroasters.art/products/muvna-gravity-espresso-distributor-black-58-35mm"
+  },
+  {
+   "coffee": "Muvna Espresso Knock Box",
+   "roaster": "sprout-coffee-roasters",
+   "url": "https://sproutcoffeeroasters.art/products/muvna-espresso-knock-box"
+  },
+  {
+   "coffee": "Honeybush 500g",
+   "roaster": "sprout-coffee-roasters",
+   "url": "https://sproutcoffeeroasters.art/products/honeybush-500g"
+  },
+  {
+   "coffee": "Coffee Tasting and Filter",
+   "roaster": "sprout-coffee-roasters",
+   "url": "https://sproutcoffeeroasters.art/products/cupping-and-filter-coffee"
+  },
+  {
+   "coffee": "Espresso",
+   "roaster": "sprout-coffee-roasters",
+   "url": "https://sproutcoffeeroasters.art/products/espresso"
+  },
+  {
+   "coffee": "Guatemala - Jesus Pablo Pablo",
+   "roaster": "stooker-specialty-coffee",
+   "url": "https://stookerspecialtycoffee.com/products/guatemala-jesus-pablo-pablo-2026"
+  },
+  {
+   "coffee": "Ethiopia - Idido",
+   "roaster": "stooker-specialty-coffee",
+   "url": "https://stookerspecialtycoffee.com/products/ethiopia-idido-natural"
+  },
+  {
+   "coffee": "Ethiopia - Gerse",
+   "roaster": "stooker-specialty-coffee",
+   "url": "https://stookerspecialtycoffee.com/products/ethiopia-gerse"
+  },
+  {
+   "coffee": "Colombia Gesha - Luz Mary Alvear",
+   "roaster": "stooker-specialty-coffee",
+   "url": "https://stookerspecialtycoffee.com/products/colombia-gesha-luz-mary-alvear"
+  },
+  {
+   "coffee": "Colombia - Alberio Lugo",
+   "roaster": "stooker-specialty-coffee",
+   "url": "https://stookerspecialtycoffee.com/products/colombia-alberio-lugo"
+  },
+  {
+   "coffee": "Colombia - Diofanor Ruiz",
+   "roaster": "stooker-specialty-coffee",
+   "url": "https://stookerspecialtycoffee.com/products/colombia-dionafur-ruiz"
+  },
+  {
+   "coffee": "Brazil - Daterra Sunset",
+   "roaster": "stooker-specialty-coffee",
+   "url": "https://stookerspecialtycoffee.com/products/brazil-daterra-sunset"
+  },
+  {
+   "coffee": "Curated Espresso - Monthly roasters Pick",
+   "roaster": "stooker-specialty-coffee",
+   "url": "https://stookerspecialtycoffee.com/products/curated-espresso-monthly-roasters-pick"
+  },
+  {
+   "coffee": "Colombia - Popayán Sugar Cane Decaf",
+   "roaster": "stooker-specialty-coffee",
+   "url": "https://stookerspecialtycoffee.com/products/colombia-popayan-sugar-cane-decaf"
+  },
+  {
+   "coffee": "Haven Blend",
+   "roaster": "stooker-specialty-coffee",
+   "url": "https://stookerspecialtycoffee.com/products/haven-blend"
+  },
+  {
+   "coffee": "Curated Filter - Monthly roasters Pick",
+   "roaster": "stooker-specialty-coffee",
+   "url": "https://stookerspecialtycoffee.com/products/curated-monthly-roasters-pick"
+  },
+  {
+   "coffee": "Motto Blend",
+   "roaster": "stooker-specialty-coffee",
+   "url": "https://stookerspecialtycoffee.com/products/motto-espresso-blend"
+  },
+  {
+   "coffee": "Essentials Rwanda",
+   "roaster": "wide-awake",
+   "url": "https://wideawake.coffee/products/essentials-rwanda"
+  },
+  {
+   "coffee": "Essentials Brazil",
+   "roaster": "wide-awake",
+   "url": "https://wideawake.coffee/products/essentials-brazil"
+  },
+  {
+   "coffee": "Mastering Filter Coffee",
+   "roaster": "wide-awake",
+   "url": "https://wideawake.coffee/products/mastering-filter-coffee"
+  },
+  {
+   "coffee": "Mastering Espresso",
+   "roaster": "wide-awake",
+   "url": "https://wideawake.coffee/products/mastering-espresso"
+  },
+  {
+   "coffee": "Colombia - Fruit Juice - Natural",
+   "roaster": "five-ways-coffee",
+   "url": "https://fivewayscoffee.com/products/colombia-fruit-juice-natural"
+  },
+  {
+   "coffee": "Brazil - Daterra - Summer Solstice - Tree Dried Natural",
+   "roaster": "five-ways-coffee",
+   "url": "https://fivewayscoffee.com/products/brazil-summer-solstice-daterra-tree-dried-natural"
+  },
+  {
+   "coffee": "Colombia - Purple Rain - 3 Stage Must Fermentation (omni brew)",
+   "roaster": "five-ways-coffee",
+   "url": "https://fivewayscoffee.com/products/colombia-purple-rain-3-stage-must-fermentation-natural"
+  },
+  {
+   "coffee": "Kenya - Red Currant - Ichuga AA - Washed",
+   "roaster": "five-ways-coffee",
+   "url": "https://fivewayscoffee.com/products/kenya-red-currant-ichuga-aa-washed"
+  },
+  {
+   "coffee": "Ethiopia - First Light - Washed - Guji",
+   "roaster": "five-ways-coffee",
+   "url": "https://fivewayscoffee.com/products/ethiopia-first-light-washed-guji-2"
+  },
+  {
+   "coffee": "Yemen - Maghrib Ans XI - Alchemy advanced pressure control - Competition series (90+) Limited release",
+   "roaster": "five-ways-coffee",
+   "url": "https://fivewayscoffee.com/products/yemen-maghrib-ans-xi-alchemy-advanced-pressure-control-competition-series-90-limited-release"
+  },
+  {
+   "coffee": "Colombia - Las Flores - Washed Cherry Oxidation- Java",
+   "roaster": "five-ways-coffee",
+   "url": "https://fivewayscoffee.com/products/colombia-las-floras-washed-cherry-oxidation-java"
+  },
+  {
+   "coffee": "Ethiopia - Dambi Uddo - Natural",
+   "roaster": "five-ways-coffee",
+   "url": "https://fivewayscoffee.com/products/dambi-udoo"
+  },
+  {
+   "coffee": "Colombia - Jardines del Encanto - Maragesha Competition lot",
+   "roaster": "five-ways-coffee",
+   "url": "https://fivewayscoffee.com/products/colombia-jardines-del-encanto-maragesha-competition-lot"
+  },
+  {
+   "coffee": "Colombia - DECAF - Sugarcane",
+   "roaster": "five-ways-coffee",
+   "url": "https://fivewayscoffee.com/products/colombian-sugarcane-decaf"
+  },
+  {
+   "coffee": "Brazil & Colombia - Five Points - Natural & Washed",
+   "roaster": "five-ways-coffee",
+   "url": "https://fivewayscoffee.com/products/five-points-blend"
+  },
+  {
+   "coffee": "Brazil - Moves Like Jagger - Natural",
+   "roaster": "five-ways-coffee",
+   "url": "https://fivewayscoffee.com/products/moves-like-jagger"
+  },
+  {
+   "coffee": "Colombia - San Sebastian - Washed",
+   "roaster": "five-ways-coffee",
+   "url": "https://fivewayscoffee.com/products/colombia-san-sebastian"
+  },
+  {
+   "coffee": "Fucking Strong Coffee from Rwanda",
+   "roaster": "goodbeans",
+   "url": "https://goodbeans.nl/products/fucking-strong-coffee-from-rwanda"
+  },
+  {
+   "coffee": "Fucking Strong Coffee from India",
+   "roaster": "goodbeans",
+   "url": "https://goodbeans.nl/products/fucking-strong-coffee-from-india"
+  },
+  {
+   "coffee": "Fucking Strong Coffee from Ethiopia",
+   "roaster": "goodbeans",
+   "url": "https://goodbeans.nl/products/fucking-strong-coffee-from-ethiopia"
+  },
+  {
+   "coffee": "Fucking Strong Coffee from Brazil",
+   "roaster": "goodbeans",
+   "url": "https://goodbeans.nl/products/fucking-strong-coffee-from-brazil"
+  },
+  {
+   "coffee": "Fucking Strong Coffee from Peru",
+   "roaster": "goodbeans",
+   "url": "https://goodbeans.nl/products/fucking-strong-coffee-from-peru"
+  },
+  {
+   "coffee": "Fucking Strong DECAF",
+   "roaster": "goodbeans",
+   "url": "https://goodbeans.nl/products/fucking-strong-decaf-from-colombia"
+  },
+  {
+   "coffee": "Espresso roast - Colombia - El bombo mujeres",
+   "roaster": "espressofabriek",
+   "url": "https://espressofabriek.nl/products/espresso-roast-colombia-el-bombo-mujeres"
+  },
+  {
+   "coffee": "Filter roast - Ethiopia - Guji Okoluu",
+   "roaster": "espressofabriek",
+   "url": "https://espressofabriek.nl/products/filter-roast-ethiopia-guji-okoluu"
+  },
+  {
+   "coffee": "Espresso roast - Indonesia - Flores Laga Lizu",
+   "roaster": "espressofabriek",
+   "url": "https://espressofabriek.nl/products/espresso-roast-indonesia-flores-laga-lizu-1"
+  },
+  {
+   "coffee": "Espresso roast - Guatemala -finca wiwitz",
+   "roaster": "espressofabriek",
+   "url": "https://espressofabriek.nl/products/espresso-roast-guatemala-huehuetenango-1"
+  },
+  {
+   "coffee": "Espresso roast - Brazil - sítio dois irmãos",
+   "roaster": "espressofabriek",
+   "url": "https://espressofabriek.nl/products/brazil-mantiqueira-mountains"
+  },
+  {
+   "coffee": "(DECAF) Espresso roast - Colombia - Santander",
+   "roaster": "espressofabriek",
+   "url": "https://espressofabriek.nl/products/decaf-espresso-roast-colombia-santander"
+  },
+  {
+   "coffee": "Colombia Night Owl - Decaf",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/colombia-night-owl-decaf-light-roast"
+  },
+  {
+   "coffee": "Brazil Portilho",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/brazil-portilho"
+  },
+  {
+   "coffee": "Rwanda Urugori",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/rwanda-urugori-medium"
+  },
+  {
+   "coffee": "Burundi Bundle",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/burundi-bundle"
+  },
+  {
+   "coffee": "Burundi Shikankoni",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/burundi-shikankoni"
+  },
+  {
+   "coffee": "Burundi Nkuba",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/burundi-nkuba"
+  },
+  {
+   "coffee": "Ethiopia Halo Beriti",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/ethiopia-halo-beriti-medium"
+  },
+  {
+   "coffee": "Cafec Abaca Filter Paper",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/cafec-abaca-filter-paper"
+  },
+  {
+   "coffee": "Rwanda Bundle",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/rwanda-bundle"
+  },
+  {
+   "coffee": "Rwanda Kamajumba",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/rwanda-kamajumba"
+  },
+  {
+   "coffee": "Ethiopia Hambela",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/ethiopia-hambela"
+  },
+  {
+   "coffee": "Moccamaster no. 4 - filter paper",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/moccamaster-no-4-filter-paper"
+  },
+  {
+   "coffee": "Decaf",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/decaf-medium"
+  },
+  {
+   "coffee": "Brazil Arara",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/brazil-arara"
+  },
+  {
+   "coffee": "Honduras Guayabina",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/honduras-guayabina-medium"
+  },
+  {
+   "coffee": "Zerowater filter",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/zerowater-filter"
+  },
+  {
+   "coffee": "Brazil",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/brazil"
+  },
+  {
+   "coffee": "Guatemala",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/guatemala-light"
+  },
+  {
+   "coffee": "Yellow Blend",
+   "roaster": "rum-baba",
+   "url": "https://rumbaba.nl/products/yellow-blend"
+  },
+  {
+   "coffee": "Ethiopië Yirgacheffe Aricha",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/ethiopie-aricha"
+  },
+  {
+   "coffee": "Brazil Riacho das Varas",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/brazil-riacho-das-varas"
+  },
+  {
+   "coffee": "Peru Las Flores de Luya",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/peru-las-flores-de-luya"
+  },
+  {
+   "coffee": "Rwanda Karambi (Light Roast)",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/rwanda-karambi"
+  },
+  {
+   "coffee": "Guatemala Swiss Water Decaf",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/guatemala-swiss-water-decaf"
+  },
+  {
+   "coffee": "Colombia El Caney Sugarcane Decaf",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/colombia-el-caney-sugarcane-decaf"
+  },
+  {
+   "coffee": "Costa Rica Tarrazu",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/costa-rica-tarrazu"
+  },
+  {
+   "coffee": "Peru Monteverde",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/peru-monteverde"
+  },
+  {
+   "coffee": "Colombia Tumbaga Sugarcane Decaf",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/colombia-tumbaga-sugarcane-decaf"
+  },
+  {
+   "coffee": "Peru Swiss Water Decaf",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/peru-swiss-water-decaf"
+  },
+  {
+   "coffee": "Solute Waterfilter eq Jura Claris White",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/solute-waterfilter-eq-jura-claris-white"
+  },
+  {
+   "coffee": "Durgol Swiss Espresso 2x125 ml",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/durgol-swiss-espresso-2x125ml"
+  },
+  {
+   "coffee": "Hario Filter in Coffee Bottle",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/hario-filter-in-coffee-bottle"
+  },
+  {
+   "coffee": "Espresso Decaf Arabica",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/espresso-decaf-arabica"
+  },
+  {
+   "coffee": "Ethiopië Sidamo",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/ethiopie-sidamo"
+  },
+  {
+   "coffee": "Colombia Supremo",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/colombia-supremo"
+  },
+  {
+   "coffee": "Sumatra Orang Utan",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/sumatra-orang-utan"
+  },
+  {
+   "coffee": "Colombia La Morelia",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/colombia-la-morelia"
+  },
+  {
+   "coffee": "Espresso Grande Alta",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/espresso-grande-alta"
+  },
+  {
+   "coffee": "Espresso Bella",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/espresso-bella"
+  },
+  {
+   "coffee": "Espresso Romana",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/espresso-romana"
+  },
+  {
+   "coffee": "Espresso Italiano",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/espresso-italiano"
+  },
+  {
+   "coffee": "Espresso Emporio",
+   "roaster": "fascino",
+   "url": "https://fascino-coffee.com/products/espresso-emporio"
+  },
+  {
+   "coffee": "De Parade x Wakuli Blend [225g]",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/parade-wakuli-blend"
+  },
+  {
+   "coffee": "Single Origin Espresso - single order [from 1kg]",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/single-origin-espresso-kg"
+  },
+  {
+   "coffee": "Seasonal Microlot Light Roast - single order [2X225g]",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/seasonal-microlot-light-roast"
+  },
+  {
+   "coffee": "Decaf",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/decaf-pod"
+  },
+  {
+   "coffee": "Power House Blend",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/power-house-blend-pod"
+  },
+  {
+   "coffee": "Seasonal Microlot Medium Roast - single order [2X225g]",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/seasonal-microlot-medium-roast"
+  },
+  {
+   "coffee": "Original House Blend",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/original-house-blend-pod"
+  },
+  {
+   "coffee": "Single Origin Decaf - single order [from 1kg]",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/decaf-single-origin-kg"
+  },
+  {
+   "coffee": "Wakuli's Filter Pack - single order [2X225g]",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/filter-starter-pack"
+  },
+  {
+   "coffee": "Wakuli's Espresso Pack - single order [2X225g]",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/espresso-starter-pack"
+  },
+  {
+   "coffee": "Power House Blend - single order [from 1kg]",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/power-house-blend-kg"
+  },
+  {
+   "coffee": "Original House Blend - single order [from 1kg]",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/original-house-blend-kg"
+  },
+  {
+   "coffee": "Discover Monthly Medium Roast - single order [from 1kg]",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/discover-monthly-medium-roast-kg"
+  },
+  {
+   "coffee": "Discover Monthly Light Roast - single order [from 1kg]",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/discover-monthly-light-roast-kg"
+  },
+  {
+   "coffee": "Peru",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/peru-pod"
+  },
+  {
+   "coffee": "Ethiopia Pod",
+   "roaster": "wakuli",
+   "url": "https://wakuli.nl/products/ethiopia-pod"
+  },
+  {
+   "coffee": "Peru Decaf (Biologisch)",
+   "roaster": "koffie-van-hoorn",
+   "url": "https://koffievanhoorn.nl/products/peru-decaf-biologisch"
+  },
+  {
+   "coffee": "Ethiopië Yirgacheffe",
+   "roaster": "koffie-van-hoorn",
+   "url": "https://koffievanhoorn.nl/products/ethiopie-yirgacheffe"
+  },
+  {
+   "coffee": "Guatemala SHB Santa Rosa",
+   "roaster": "koffie-van-hoorn",
+   "url": "https://koffievanhoorn.nl/products/guatemala-shb-santa-rosa"
+  },
+  {
+   "coffee": "Brazilië Yellow Bourbon",
+   "roaster": "koffie-van-hoorn",
+   "url": "https://koffievanhoorn.nl/products/brazilie-yellow-bourbon"
+  },
+  {
+   "coffee": "Indonesië Sumatra Raja Gayo",
+   "roaster": "koffie-van-hoorn",
+   "url": "https://koffievanhoorn.nl/products/indonesie-sumatra-raja-gayo"
+  },
+  {
+   "coffee": "Bontekoe Blend – Medium Roast",
+   "roaster": "koffie-van-hoorn",
+   "url": "https://koffievanhoorn.nl/products/bontekoe-blend-medium-roast"
+  },
+  {
+   "coffee": "Bontekoe Blend – Italian Roast",
+   "roaster": "koffie-van-hoorn",
+   "url": "https://koffievanhoorn.nl/products/bontekoe-blend-italian-roast"
+  },
+  {
+   "coffee": "Bontekoe Blend – Espresso Roast",
+   "roaster": "koffie-van-hoorn",
+   "url": "https://koffievanhoorn.nl/products/bontekoe-blend-espresso-roast"
+  },
+  {
+   "coffee": "Peru Koffiebonen",
+   "roaster": "de-koffiemeester",
+   "url": "https://dekoffiemeester.nl/products/peru-koffiebonen-kopen"
+  },
+  {
+   "coffee": "Voordeelpakket koffiebonen 3 x 1 kg Ethiopia Yirgacheffe (100% Arabica)",
+   "roaster": "de-koffiemeester",
+   "url": "https://dekoffiemeester.nl/products/voordeelpakket-koffiebonen-3-x-1-kg-ethiopia-yirgacheffe-100-arabica"
+  },
+  {
+   "coffee": "Voordeelpakket koffiebonen 3 x 1 kg Colombia Supremo (100% Arabica)",
+   "roaster": "de-koffiemeester",
+   "url": "https://dekoffiemeester.nl/products/koffie-proefpakket-3x1kg-colombia-supremo"
+  },
+  {
+   "coffee": "Voordeelpakket koffiebonen 3 x 1 kg Brasil (100% Arabica)",
+   "roaster": "de-koffiemeester",
+   "url": "https://dekoffiemeester.nl/products/verse-koffiebonen-voordeelpakket-3-x-1-kg-brasil"
+  },
+  {
+   "coffee": "Brasil Mantiqueira Koffiebonen",
+   "roaster": "de-koffiemeester",
+   "url": "https://dekoffiemeester.nl/products/brasil-mantiqueira-single-origin-koffiebonen"
+  },
+  {
+   "coffee": "Colombia Supremo Koffiebonen",
+   "roaster": "de-koffiemeester",
+   "url": "https://dekoffiemeester.nl/products/colombia-supremo-ep-single-origin-koffiebonen"
+  },
+  {
+   "coffee": "Ethiopia Yirgacheffe Koffiebonen",
+   "roaster": "de-koffiemeester",
+   "url": "https://dekoffiemeester.nl/products/ethiopia-yirgacheffe-koffiebonen"
+  },
   {
    "coffee": "Fucking Strong Coffee from Rwanda",
    "roaster": "fucking-strong-coffee",
@@ -31,146 +781,270 @@
    "coffee": "Fucking Strong DECAF",
    "roaster": "fucking-strong-coffee",
    "url": "https://fuckingstrongcoffee.nl/products/fucking-strong-decaf-from-colombia"
+  },
+  {
+   "coffee": "Kyoto Blend",
+   "roaster": "92-origins",
+   "url": "https://92origins.com/products/blends-kyoto-100-arabica-coffee"
+  },
+  {
+   "coffee": "Milano Blend 100% Arabica",
+   "roaster": "92-origins",
+   "url": "https://92origins.com/products/milano-blend-100-arabica"
+  },
+  {
+   "coffee": "Bali Blend 100% Arabica",
+   "roaster": "92-origins",
+   "url": "https://92origins.com/products/bali-blend-100-arabica"
+  },
+  {
+   "coffee": "Arabica Peru",
+   "roaster": "92-origins",
+   "url": "https://92origins.com/products/arabica-peru"
+  },
+  {
+   "coffee": "Arabica Ethopia Yirgacheffe",
+   "roaster": "92-origins",
+   "url": "https://92origins.com/products/arabica-ethopia-100-yirgacheffe"
+  },
+  {
+   "coffee": "Arabica Brazil Mogiana",
+   "roaster": "92-origins",
+   "url": "https://92origins.com/products/single-origin-100-arabica-brazil"
+  },
+  {
+   "coffee": "Arabica Guatemala",
+   "roaster": "92-origins",
+   "url": "https://92origins.com/products/single-origin-100-arabica-guatemala"
+  },
+  {
+   "coffee": "Arabica Colombia Organic",
+   "roaster": "92-origins",
+   "url": "https://92origins.com/products/single-origin-100-arabica-colombia"
+  },
+  {
+   "coffee": "Dubai Blend",
+   "roaster": "92-origins",
+   "url": "https://92origins.com/products/dubai-blend"
+  },
+  {
+   "coffee": "Peru Prosperidad de Chirinos",
+   "roaster": "amstel-koffie",
+   "url": "https://www.amstelkoffie.nl/products/peru-prosperidad-de-chirinos"
+  },
+  {
+   "coffee": "Uganda Rwenzori Mountains",
+   "roaster": "amstel-koffie",
+   "url": "https://www.amstelkoffie.nl/products/uganda-rwenzori-mountains"
+  },
+  {
+   "coffee": "Honduras Geisha",
+   "roaster": "amstel-koffie",
+   "url": "https://www.amstelkoffie.nl/products/honduras-geisha"
+  },
+  {
+   "coffee": "Colombia Decaf",
+   "roaster": "amstel-koffie",
+   "url": "https://www.amstelkoffie.nl/products/colombia-decaf"
+  },
+  {
+   "coffee": "Brazil Fazenda Boa Esperança",
+   "roaster": "amstel-koffie",
+   "url": "https://www.amstelkoffie.nl/products/brazil"
+  },
+  {
+   "coffee": "Korffilterpapier, snelfilter, koffiefilter 1000st, (85/245) B3",
+   "roaster": "arabicafelix",
+   "url": "https://arabicafelix.nl/products/korffilterpapier-85-245-b3"
+  },
+  {
+   "coffee": "Mocha Felix — Yemen Haraz Coffee Beans | ArabicaFelix",
+   "roaster": "arabicafelix",
+   "url": "https://arabicafelix.nl/products/coffee-beans-mocha-felix-yemeni"
+  },
+  {
+   "coffee": "Harazi Yemen Coffee Beans — Natural Process- Dark roast.",
+   "roaster": "arabicafelix",
+   "url": "https://arabicafelix.nl/products/hharrazi-coffee-beans"
+  },
+  {
+   "coffee": "de Bonenjutter",
+   "roaster": "bakkum-beans",
+   "url": "https://bakkumbeans.com/products/de-bonenjutter"
+  },
+  {
+   "coffee": "Vintage Bakkum Beans Espresso Mok",
+   "roaster": "bakkum-beans",
+   "url": "https://bakkumbeans.com/products/vintage-bakkum-beans-espresso-mok"
+  },
+  {
+   "coffee": "Kado Pakket:  Lounge set Bakkum Beans",
+   "roaster": "bakkum-beans",
+   "url": "https://bakkumbeans.com/products/kado-pakket-bakkum-beans-the-ultimate-experience"
+  },
+  {
+   "coffee": "Vintage Bakkum Beans Mok",
+   "roaster": "bakkum-beans",
+   "url": "https://bakkumbeans.com/products/vintage-bakkum-beans-mok"
+  },
+  {
+   "coffee": "Shorts Bakkum Beans",
+   "roaster": "bakkum-beans",
+   "url": "https://bakkumbeans.com/products/shorts-bakkum-beans"
+  },
+  {
+   "coffee": "Strandtas Bakkum Beans",
+   "roaster": "bakkum-beans",
+   "url": "https://bakkumbeans.com/products/strandtas-bakkum-beans"
+  },
+  {
+   "coffee": "Costa Rica | Las Torres",
+   "roaster": "baobab-coffee-roasters",
+   "url": "https://baobabcoffee.nl/products/costa-rica-chirripo"
+  },
+  {
+   "coffee": "Ethiopia | Biniyam Aklilu",
+   "roaster": "baobab-coffee-roasters",
+   "url": "https://baobabcoffee.nl/products/ethiopia-yirgacheffe"
+  },
+  {
+   "coffee": "Colombia | Decaf",
+   "roaster": "baobab-coffee-roasters",
+   "url": "https://baobabcoffee.nl/products/colombia-decaf"
+  },
+  {
+   "coffee": "Colombia | Finca La Guamara",
+   "roaster": "baobab-coffee-roasters",
+   "url": "https://baobabcoffee.nl/products/colombia-norte-de-santander-1"
+  },
+  {
+   "coffee": "Brazil |  São Paulo",
+   "roaster": "baobab-coffee-roasters",
+   "url": "https://baobabcoffee.nl/products/brazil-sao-paulo"
+  },
+  {
+   "coffee": "Silvio Sanchez - Single origin, specialty coffee from Nicaragua",
+   "roaster": "be-good-coffee",
+   "url": "https://begoodcoffee.com/products/silvio-sanchez-single-origin-specialty-coffee-from-nicaragua"
+  },
+  {
+   "coffee": "Edubino Erazu: Organic, single origin specialty coffee from Colombia",
+   "roaster": "be-good-coffee",
+   "url": "https://begoodcoffee.com/products/coffee-from-colombia"
+  },
+  {
+   "coffee": "ProFondiSta - Italian Style Coffee blend",
+   "roaster": "be-good-coffee",
+   "url": "https://begoodcoffee.com/products/profondista-italian-style-coffee-blend-1"
+  },
+  {
+   "coffee": "Coffee from the Country of Burundi, East Africa",
+   "roaster": "be-good-coffee",
+   "url": "https://begoodcoffee.com/products/coffee-from-the-country-of-burundi-east-africa"
+  },
+  {
+   "coffee": "Coming Soon - #101 - Los Robles, Costa Rica",
+   "roaster": "be-good-coffee",
+   "url": "https://begoodcoffee.com/products/101-los-robles-costa-rica"
+  },
+  {
+   "coffee": "#18 Dawa Basin, Ethiopia: 1x Drip Coffee Bag",
+   "roaster": "be-good-coffee",
+   "url": "https://begoodcoffee.com/products/ethiopia-gakenke-kayanza-microlot-20-x-drip-coffee-bags"
+  },
+  {
+   "coffee": "iNGiNiENTO - Italian Style Coffee blend",
+   "roaster": "be-good-coffee",
+   "url": "https://begoodcoffee.com/products/inginiento-italian-style-coffee-blend-1"
+  },
+  {
+   "coffee": "Coffee from Guji, Ethiopia",
+   "roaster": "be-good-coffee",
+   "url": "https://begoodcoffee.com/products/coffee-from-guji-ethiopia"
+  },
+  {
+   "coffee": "SUPREMisimo - Italian Style Coffee blend",
+   "roaster": "be-good-coffee",
+   "url": "https://begoodcoffee.com/products/italian-style-coffee-blend"
+  },
+  {
+   "coffee": "#92 Silvio Sanchez, Nicaragua: x1 Drip Coffee Bag",
+   "roaster": "be-good-coffee",
+   "url": "https://begoodcoffee.com/products/coming-soon-92-silvio-sanchez-nicaragua-x-10-pcs"
+  },
+  {
+   "coffee": "#99 Edubino Erazo, Colombia: x1 Drip Coffee Bag",
+   "roaster": "be-good-coffee",
+   "url": "https://begoodcoffee.com/products/coming-soon-099-edubino-erazo-colombia"
+  },
+  {
+   "coffee": "#17 Gakenke Kayanza, Burundi: 1x Drip Coffee Bag",
+   "roaster": "be-good-coffee",
+   "url": "https://begoodcoffee.com/products/burundi-gakenke-kayanza-province-20-x-drip-coffee-bags"
+  },
+  {
+   "coffee": "S-19 (Nan Suan Ya Luang syrina) Light Roast 180g.",
+   "roaster": "beans-coffee-roasters",
+   "url": "https://beanscoffeeroaster.com/products/s-19"
+  },
+  {
+   "coffee": "S-43 (Ethiopia Daye Bensa Guji) Light Roast 20g.",
+   "roaster": "beans-coffee-roasters",
+   "url": "https://beanscoffeeroaster.com/products/s-43-ethiopia-daye-bensa-guji-light-roast-20g"
+  },
+  {
+   "coffee": "S-43 (Ethiopia Daye Bensa Guji) Light Roast 180g.",
+   "roaster": "beans-coffee-roasters",
+   "url": "https://beanscoffeeroaster.com/products/s-43"
+  },
+  {
+   "coffee": "S-42 (Ethiopia Sidama Bensa Hamasho) Light Roast 20g.",
+   "roaster": "beans-coffee-roasters",
+   "url": "https://beanscoffeeroaster.com/products/s-42-ethiopia-sidama-bensa-hamasho-light-roast-20g"
   }
  ],
  "gone": [
   {
-   "coffee": "House Blend - 24 Specialty Coffee capsules voor espresso"
+   "coffee": "Drip bag, Colombia  Las Perlitas"
   },
   {
-   "coffee": "Fucking Strong Coffee from Rwanda"
+   "coffee": "Rocket R58  Brute Bonen Edition"
   },
   {
-   "coffee": "Fucking Strong Coffee from India"
+   "coffee": "Horeca specialty blend 5 KG vat"
   },
   {
-   "coffee": "Fucking Strong Coffee from Ethiopia"
+   "coffee": "<span style=\"font-size: 14px\">GAGGIA MDF 55 + Gratis koffie</span><br>Bonenmaler"
   },
   {
-   "coffee": "Fucking Strong Coffee from Brazil"
+   "coffee": "6x BLEND 035"
   },
   {
-   "coffee": "Fucking Strong Coffee from Peru"
+   "coffee": "10x BLEND 035"
   },
   {
-   "coffee": "Good Beans Socks"
+   "coffee": "ROK espresso maker EspressoGC"
   },
   {
-   "coffee": "Fucking Strong DECAF"
+   "coffee": "Masterclass Espresso Grinding  zaterdag 23 november 2024"
   },
   {
-   "coffee": "Theefilter met onderzetter"
+   "coffee": "Koffiepakket 1,5 kg  | Guatemala Brazil met Brazil Bourbon"
   },
   {
-   "coffee": "Abonnement – AC De Branderij"
+   "coffee": "Koffiepakket 1,5 kg | Dark Roast en Brazil Bourbon"
   },
   {
-   "coffee": "Eerlijke Boontjes Proefpakket – Eerlijke Boontjes, Colombia"
+   "coffee": "Brita AquaGusto 100 waterfilter"
   },
   {
-   "coffee": "Segafredo proefpakket – Café du Jour, Brazilië medium roast"
+   "coffee": "JV Coffee  Snelfilter Classic"
   },
   {
-   "coffee": "Koffie abonnement – Brandstof Koffie, Brazilië 75,76 roast"
+   "coffee": "Horeca specialty blend"
   },
   {
-   "coffee": "Koffie Abonnement – eek coffee, Brazilië donkere roast"
-  },
-  {
-   "coffee": "B2Bean Abonnement – The Slow Roasters, medium-donkere roast"
-  },
-  {
-   "coffee": "Abonnement – The Slow Roasters, medium-donkere roast"
-  },
-  {
-   "coffee": "Peru Toterani"
-  },
-  {
-   "coffee": "Peru Toterani"
-  },
-  {
-   "coffee": "Koffie cadeau-box"
-  },
-  {
-   "coffee": "Capriole proefpakket"
-  },
-  {
-   "coffee": "Capriole proefpakket melanges"
-  },
-  {
-   "coffee": "Capriole proefpakket huismelanges"
-  },
-  {
-   "coffee": "LSRF Gravel Grinder"
-  },
-  {
-   "coffee": "Brinks proefpakket black collection"
-  },
-  {
-   "coffee": "Brinks Specialty proefpakket"
-  },
-  {
-   "coffee": "Koffie Abonnement"
-  },
-  {
-   "coffee": "Proefpakket"
-  },
-  {
-   "coffee": "Koffie Proefpakket"
-  },
-  {
-   "coffee": "Proefpakket 100% Arabica"
-  },
-  {
-   "coffee": "Klein proefpakket"
-  },
-  {
-   "coffee": "Proefpakket"
-  },
-  {
-   "coffee": "Subscription"
-  },
-  {
-   "coffee": "Single Origin Subscription"
-  },
-  {
-   "coffee": "Microlot Proefpakket"
-  },
-  {
-   "coffee": "Koffie Proefpakket"
-  },
-  {
-   "coffee": "Single Origin Proefpakket"
-  },
-  {
-   "coffee": "Koffieabonnement"
-  },
-  {
-   "coffee": "Koffie Abonnement"
-  },
-  {
-   "coffee": "Proefpakket"
-  },
-  {
-   "coffee": "Proefpakket"
-  },
-  {
-   "coffee": "Proefpakket"
-  },
-  {
-   "coffee": "Peru Toterani"
-  },
-  {
-   "coffee": "Proefpakket Tour du Monde"
-  },
-  {
-   "coffee": "Koffieabonnement"
-  },
-  {
-   "coffee": "Proefpakket Koffie"
-  },
-  {
-   "coffee": "Proefpakket #5 Single-Estates"
+   "coffee": "Mellow Fellow"
   }
  ],
  "price_changes": [],

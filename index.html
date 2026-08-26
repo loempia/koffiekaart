@@ -141,8 +141,8 @@ footer b{color:var(--ink)}
   <p>Browse current offerings from <b>374 Dutch specialty roasteries</b> — from Amsterdam micro-branders to national names. Search by origin, process, taste or acidity, and get a direct link to buy.</p>
   <div class="stats">
     <div><b>372</b><span>roasteries indexed</span></div>
-    <div><b>3,872</b><span>coffees tracked</span></div>
-    <div><b>987</b><span>live-priced offerings</span></div>
+    <div><b>4,934</b><span>coffees tracked</span></div>
+    <div><b>991</b><span>live-priced offerings</span></div>
     <div><b>~€0</b><span>markup. we link out, they roast</span></div>
   </div>
 </section>
@@ -165,6 +165,8 @@ footer b{color:var(--ink)}
   <select class="chip" id="f-origin"><option value="">Origin: all</option></select>
   <select class="chip" id="f-roast"><option value="">Roast: all</option><option>light</option><option>medium</option><option>medium-dark</option><option>dark</option></select>
   <select class="chip" id="f-province"><option value="">Province: all</option></select>
+  <select class="chip" id="f-brew"><option value="">Brew: all</option><option>espresso</option><option>filter</option><option>omni</option></select>
+  <select class="chip" id="f-sort"><option value="relevance">Sort: relevance</option><option value="price-asc">Price ↑</option><option value="price-desc">Price ↓</option><option value="name">Name A-Z</option></select>
 </div>
 
 <div class="resultline"><span id="resultcount"></span><span style="font-size:.8rem"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px"><input type="checkbox" id="f-live" style="accent-color:var(--accent)"> Live catalogue only</label></span></div>
@@ -187,7 +189,19 @@ footer b{color:var(--ink)}
 
 <script src="data/data.js"></script>
 <script>
-let state = {view:'discover', q:'', filters:new Set(), origin:'', roast:'', province:'', liveOnly:false, watch:load()};
+let state = {view:'discover', q:'', filters:new Set(), origin:'', roast:'', province:'', liveOnly:false, brew:'', sort:'relevance', watch:load()};
+// restore state from URL on load
+(function(){
+  const p = new URLSearchParams(location.search);
+  if(p.get('q')) state.q = p.get('q');
+  if(p.get('origin')) state.origin = p.get('origin');
+  if(p.get('roast')) state.roast = p.get('roast');
+  if(p.get('province')) state.province = p.get('province');
+  if(p.get('live')==='1') state.liveOnly = true;
+  if(p.get('sort')) state.sort = p.get('sort');
+  if(p.get('brew')) state.brew = p.get('brew'); else state.brew='';
+  if(p.get('view')) state.view = p.get('view');
+})();
 function load(){try{return JSON.parse(localStorage.getItem('kk_watch')||'[]')}catch(e){return[]}}
 function saveWatch(){localStorage.setItem('kk_watch', JSON.stringify(state.watch))}
 
@@ -218,6 +232,7 @@ function match(c){
   }
   if(state.origin&&c.o!==state.origin)return false;
   if(state.liveOnly&&!c.live)return false;
+  if(state.brew&&!(c.brew||[]).includes(state.brew))return false;
   if(state.roast&&c.ro!==state.roast)return false;
   if(state.province){
     const r=window.ROASTERS.find(x=>x.id===c.r);
@@ -244,11 +259,11 @@ function currentList(){
     return window.COFFEES.filter(c=>state.watch.includes(c.id));
   }
   let list=window.COFFEES.filter(match);
-  // rank: live+priced first, then relevance to query
-  list.sort((a,b)=>{
-    const s=x=>((x.live?2:0)+(x.price?1:0));
-    return s(b)-s(a)||a.n.localeCompare(b.n);
-  });
+  const s=x=>((x.live?2:0)+(x.price?1:0));
+  if(state.sort==='price-asc') list.sort((a,b)=>(a.price??Infinity)-(b.price??Infinity));
+  else if(state.sort==='price-desc') list.sort((a,b)=>(b.price??-1)-(a.price??-1));
+  else if(state.sort==='name') list.sort((a,b)=>a.n.localeCompare(b.n));
+  else list.sort((a,b)=>s(b)-s(a)||a.n.localeCompare(b.n)); // relevance
   return list.slice(0,240); // cap render for speed
 }
 
@@ -267,6 +282,7 @@ function cardHTML(c){
     (c.p||[]).map(p=>`<span class="tag">${esc(p)}</span>`).join(''),
     c.ac==='high'?`<span class="tag">bright</span>`:c.ac==='low'?`<span class="tag">low acid</span>`:'',
     c.decaf?`<span class="tag">decaf</span>`:'',
+    (c.brew||[]).map(b=>`<span class="tag">${esc(b)}</span>`).join(''),
     (c.t||[]).slice(0,3).map(t=>`<span class="tag">${esc(t)}</span>`).join('')
   ].join('');
   return `<article class="card ${c.live?'live':''} ${c.stock?'instock':''}" onclick="openDetail('${esc(c.id)}')">
@@ -284,7 +300,21 @@ function cardHTML(c){
   </article>`;
 }
 
+function syncURL(){
+  const p = new URLSearchParams();
+  if(state.q) p.set('q', state.q);
+  if(state.origin) p.set('origin', state.origin);
+  if(state.roast) p.set('roast', state.roast);
+  if(state.province) p.set('province', state.province);
+  if(state.liveOnly) p.set('live','1');
+  if(state.sort && state.sort!=='relevance') p.set('sort', state.sort);
+  if(state.brew) p.set('brew', state.brew);
+  if(state.view && state.view!=='discover') p.set('view', state.view);
+  const qs = p.toString();
+  history.replaceState(null, '', qs ? '?'+qs : location.pathname);
+}
 function render(){
+  syncURL();
   $('#view-coffees').style.display=state.view==='roasters'?'none':'grid';
   $('#view-roasters').style.display=state.view==='roasters'?'grid':'none';
   $('#view-watch').style.display='none';
@@ -299,7 +329,18 @@ function render(){
   $('#view-coffees').innerHTML=list.map(cardHTML).join('');
   $('#resultcount').textContent=`${list.length}${state.view!=='watch'&&(window.COFFEES.filter(match).length>240)?'+':''} coffees${state.view==='watch'?' on your watchlist':''}`;
   if(!list.length){
-    $('#view-coffees').innerHTML=`<div class="empty" style="grid-column:1/-1"><h3>${state.view==='watch'?'Your watchlist is empty':'Nothing found'}</h3>${state.view==='watch'?'Tap ♡ on any coffee to keep an eye on its price and availability.':'Try broader terms — e.g. <i>ethiopia natural</i> or just a roaster name.'}</div>`;
+    let hint='';
+    if(state.view!=='watch' && state.q){
+      const q=state.q.toLowerCase();
+      const ALIASES={acidic:['bright','fruitig','citrus','fruity'],fruity:['fruitig','bessen','berries'],
+        chocolatey:['chocolade','chocolate','cacao'],floral:['bloemig','floral'],nutty:['notig','hazelnoot','amandel'],
+        strong:['dark','donkere'],sweet:['zoet','caramel','vanille'],winy:['zure','winey']};
+      const sug=Object.entries(ALIASES).filter(([k,vs])=>q.split(/\s+/).some(w=>k.startsWith(w)&&w.length>2));
+      if(sug.length) hint=`Did you mean <b>${sug.map(([k])=>k).join('</b> or <b>')}</b>? Try that term.`;
+      else if(state.filters.size||state.origin||state.liveOnly) hint='Try removing some filters.';
+      else hint='Try broader terms — e.g. <i>ethiopia natural</i>, or just a roaster name.';
+    }
+    $('#view-coffees').innerHTML=`<div class="empty" style="grid-column:1/-1"><h3>${state.view==='watch'?'Your watchlist is empty':'Nothing found'}</h3><p>${state.view==='watch'?'Tap ♡ on any coffee to keep an eye on its price and availability.':hint}</p></div>`;
   }
 }
 
@@ -395,6 +436,8 @@ $('#f-origin').addEventListener('change',e=>{state.origin=e.target.value;render(
 $('#f-roast').addEventListener('change',e=>{state.roast=e.target.value;render()});
 $('#f-province').addEventListener('change',e=>{state.province=e.target.value;render()});
 $('#f-live').addEventListener('change',e=>{state.liveOnly=e.target.checked;render()});
+$('#f-brew').addEventListener('change',e=>{state.brew=e.target.value;render()});
+$('#f-sort').addEventListener('change',e=>{state.sort=e.target.value;render()});
 
 /* sync note + footer stats */
 if(window.CHANGES){
@@ -410,6 +453,15 @@ if(window.CHANGES){
     + ' with live prices from '+c.liveRoasters+' connected webshops ('
     + (c.shopifyCoffees||0)+' Shopify, '+(c.wooCoffees||0)+' WooCommerce) · rest indexed via grachtenbeans.nl';
 }
+
+// restore UI from state
+$('#q').value = state.q;
+if(state.liveOnly) $('#f-live').checked = true;
+if(state.origin) $('#f-origin').value = state.origin;
+if(state.roast) $('#f-roast').value = state.roast;
+if(state.province) $('#f-province').value = state.province;
+if(state.brew) $('#f-brew').value = state.brew;
+if(state.sort) $('#f-sort').value = state.sort;
 
 render();
 </script>

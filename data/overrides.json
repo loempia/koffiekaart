@@ -46,7 +46,35 @@
    "aeropress",
    "chemex filters",
    "moccamaster filters",
-   "v60 filters"
+   "v60 filters",
+   "rocket r",
+   "gaggia",
+   "mahlkönig",
+   "mahlkonig",
+   "ecm ",
+   "lamarzocco",
+   "la marzocco",
+   "sanremo",
+   "victoria arduino",
+   "ceado",
+   "compak",
+   "ek43",
+   "aillio",
+   "fellow",
+   "workshop",
+   "masterclass",
+   "5 kg",
+   "5kg",
+   "drip bag",
+   "espresso maker",
+   "espressomachine",
+   "koffieapparaat",
+   "grinding",
+   "molen ",
+   "apparaat",
+   "6x blend",
+   "10x blend",
+   "horeca specialty blend"
   ]
  },
  "woocommerce_stores": {
@@ -153,5 +181,8 @@
   "van-balen-koffie": "https://vanbalenkoffie.nl",
   "van-krieken-koffie": "https://vankriekenkoffie.nl",
   "zwarte-koffie": "https://zwartekoffie.nl"
+ },
+ "_decisions": {
+  "roast_date": "NOT implemented (2026-08-26): public Shopify/Woo APIs don't expose roast dates; <1% of product descriptions contain explicit dates. Using listing dates would be misleading."
  }
 }
