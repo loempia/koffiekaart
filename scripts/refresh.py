@@ -236,7 +236,23 @@ def main():
         prev = {stable_key(c): c for c in snap}
 
     cur_list = shopify + woo + gb
-    cur_list = [c for c in cur_list if c.get("roaster_slug") not in removed_roasters]
+    # dedupe: same id, or same roaster+normalized-name, or same buy_url
+    def _norm(s): return re.sub(r"[^a-z0-9]", "", (s or "").lower())
+    seen_id, seen_name, seen_url = set(), set(), set()
+    deduped = []
+    for c in cur_list:
+        k_id = c.get("id") or stable_key(c)
+        k_name = (c.get("roaster_slug"), _norm(c.get("name")))
+        k_url = (c.get("buy_url") or c.get("detail_url") or "").split("?")[0]
+        if k_id in seen_id: continue
+        if k_name[0] and k_name in seen_name: continue
+        if k_url and k_url in seen_url and k_url.startswith("http"): continue
+        seen_id.add(k_id); seen_name.add(k_name)
+        if k_url: seen_url.add(k_url)
+        deduped.append(c)
+    cur_list = deduped
+
+    # apply overrides: drop removed roasters, filter skip patterns, patch roaster fields
     if skip_extra:
         for c in cur_list:
             t = (c.get("name") or "").lower()
